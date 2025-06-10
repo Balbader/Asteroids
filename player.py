@@ -33,9 +33,9 @@ class Player(CircleShape):
 
         # Movement controls
         if keys[pygame.K_w]:
-            self.move(dt, 1)  # Move forward
+            self.move(dt, -1)  # Move forward
         elif keys[pygame.K_s]:
-            self.move(dt, -1)  # Move backward
+            self.move(dt, 1)  # Move backward
         else:
             self.velocity = pygame.Vector2(0, 0)  # Stop when no movement keys are pressed
 

@@ -1,15 +1,8 @@
 import pygame
 from constants import *
 from player import Player
-
-player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-
-# Create sprite groups
-updatable = pygame.sprite.Group()
-drawable = pygame.sprite.Group()
-
-# Add player to sprite groups
-player.containers = (updatable, drawable)
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 
 def main():
@@ -18,6 +11,15 @@ def main():
     pygame.display.set_caption("Asteroids")
     clock = pygame.time.Clock()
     running = True
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    asteroid = Asteroid(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 20)
+    asteroidfield = AsteroidField()
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -26,12 +28,15 @@ def main():
 
         dt = clock.tick(60) / 1000.0  # Convert to seconds
         screen.fill((0, 0, 0))
-        player.update(dt)
-        player.draw(screen)
-        for sprite in drawable:
-            sprite.draw(screen)
+
+        # Update all sprites
         for sprite in updatable:
             sprite.update(dt)
+
+        # Draw all sprites
+        for sprite in drawable:
+            sprite.draw(screen)
+
         pygame.display.flip()
     pygame.quit()
 

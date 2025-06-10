@@ -35,11 +35,11 @@ class Player(CircleShape):
 
         # Movement controls
         if keys[pygame.K_w]:
-            self.move(dt, -1)  # Move forward
+            self.move(dt, 1)  # Move forward
         elif keys[pygame.K_s]:
-            self.move(dt, 1)  # Move backward
+            self.move(dt, -1)  # Move backward
         else:
-            self.velocity = pygame.Vector2(0, 0)  # Stop when no movement keys are pressed
+            self.velocity = pygame.Vector2(0, 0)
 
         # Update position based on velocity
         self.position += self.velocity * dt
@@ -47,15 +47,14 @@ class Player(CircleShape):
         # Keep the player within screen bounds
         self.keep_in_bounds()
 
-    def triangle(self):
-        forward = pygame.Vector2(0, 1).rotate(self.angle)
-        right = (
-            pygame.Vector2(0, 1).rotate(self.angle + 90) * self.radius / 1.5
-        )
-        a = self.position + forward * self.radius
-        b = self.position - forward * self.radius - right
-        c = self.position - forward * self.radius + right
-        return [a, b, c]
-
     def draw(self, screen):
-        return super().draw(screen)
+        # Draw the player as a triangle
+        forward = pygame.Vector2(0, -1).rotate(self.angle)
+        right = pygame.Vector2(1, 0).rotate(self.angle)
+
+        # Calculate triangle points
+        tip = self.position + forward * self.radius
+        left = self.position - forward * self.radius/2 + right * self.radius/2
+        right = self.position - forward * self.radius/2 - right * self.radius/2
+
+        pygame.draw.polygon(screen, (255, 255, 255), [tip, left, right])

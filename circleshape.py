@@ -11,9 +11,13 @@ class CircleShape(pygame.sprite.Sprite):
         self.position = pygame.Vector2(x, y)
         self.velocity = pygame.Vector2(0, 0)
         self.radius = radius
+        self.angle = 0
 
     def draw(self, screen):
-        pygame.draw.polygon(screen, (255, 255, 255), self.triangle())
+        # Default drawing is a circle
+        pygame.draw.circle(screen, (255, 255, 255),
+                           self.position, self.radius, 2)
 
     def update(self, dt):
-        pass
+        # Update position based on velocity
+        self.position += self.velocity * dt

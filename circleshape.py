@@ -14,10 +14,13 @@ class CircleShape(pygame.sprite.Sprite):
         self.angle = 0
 
     def draw(self, screen):
-        # Default drawing is a circle
-        pygame.draw.circle(screen, (255, 255, 255),
-                           self.position, self.radius, 2)
+        # Default drawing is a circle - only draw if not overridden
+        pass
 
     def update(self, dt):
         # Update position based on velocity
         self.position += self.velocity * dt
+
+    def collides_with(self, other):
+        distance = self.position.distance_to(other.position)
+        return distance <= (self.radius + other.radius)

@@ -22,7 +22,7 @@ def main():
     AsteroidField.containers = (updatable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     asteroid = Asteroid(100, 100, 20)
-    asteroidfield = AsteroidField()
+    AsteroidField()
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

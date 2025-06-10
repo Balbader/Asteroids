@@ -4,6 +4,13 @@ from player import Player
 
 player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
+# Create sprite groups
+updatable = pygame.sprite.Group()
+drawable = pygame.sprite.Group()
+
+# Add player to sprite groups
+player.containers = (updatable, drawable)
+
 
 def main():
     pygame.init()
@@ -18,10 +25,13 @@ def main():
                 break
 
         dt = clock.tick(60) / 1000.0  # Convert to seconds
-        player.update(dt)
-
         screen.fill((0, 0, 0))
+        player.update(dt)
         player.draw(screen)
+        for sprite in drawable:
+            sprite.draw(screen)
+        for sprite in updatable:
+            sprite.update(dt)
         pygame.display.flip()
     pygame.quit()
 

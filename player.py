@@ -3,10 +3,12 @@ from constants import (
     PLAYER_RADIUS,
     PLAYER_TURN_SPEED,
     PLAYER_MOVE_SPEED,
+    PLAYER_SHOOT_SPEED,
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
 )
 from circleshape import CircleShape
+from shot import Shot
 
 
 class Player(CircleShape):
@@ -53,11 +55,21 @@ class Player(CircleShape):
         else:
             self.velocity = pygame.Vector2(0, 0)
 
+        # Shooting controls
+        if keys[pygame.K_SPACE]:
+            self.shoot()
+
         # Update position based on velocity
         self.position += self.velocity * dt
 
         # Keep the player within screen bounds
         self.keep_in_bounds()
+
+    def shoot(self):
+        shot = Shot(self.position.x, self.position.y)
+        velocity = pygame.Vector2(0, -1)
+        velocity = velocity.rotate(self.angle)
+        shot.velocity = velocity * PLAYER_SHOOT_SPEED
 
     def draw(self, screen):
         # Draw the player as a triangle

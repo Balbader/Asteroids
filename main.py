@@ -1,5 +1,8 @@
 import pygame
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from constants import *
+from player import Player
+
+player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
 
 def main():
@@ -15,6 +18,7 @@ def main():
                 running = False
                 break
         screen.fill((0, 0, 0))
+        player.draw(screen)
         pygame.display.flip()
         clock.tick(60) / 1000
     pygame.quit()

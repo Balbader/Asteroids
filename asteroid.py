@@ -1,6 +1,6 @@
 import pygame
 from circleshape import CircleShape
-from constants import *
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 
 
 class Asteroid(CircleShape):
@@ -20,8 +20,6 @@ class Asteroid(CircleShape):
             self.position.y = -self.radius
 
     def draw(self, screen):
-        pygame.draw.circle(screen, (255, 255, 255),
-                           self.position, self.radius, 2)
-
-
-asteroid = Asteroid(100, 100, 20)
+        pygame.draw.circle(
+            screen, (255, 255, 255), self.position, self.radius, 2
+        )

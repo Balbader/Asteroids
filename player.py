@@ -1,5 +1,11 @@
 import pygame
-from constants import *
+from constants import (
+    PLAYER_RADIUS,
+    PLAYER_TURN_SPEED,
+    PLAYER_MOVE_SPEED,
+    SCREEN_WIDTH,
+    SCREEN_HEIGHT,
+)
 from circleshape import CircleShape
 
 
@@ -21,8 +27,14 @@ class Player(CircleShape):
 
     def keep_in_bounds(self):
         # Keep the center position within bounds
-        self.position.x = max(self.radius, min(SCREEN_WIDTH - self.radius, self.position.x))
-        self.position.y = max(self.radius, min(SCREEN_HEIGHT - self.radius, self.position.y))
+        self.position.x = max(
+            self.radius,
+            min(SCREEN_WIDTH - self.radius, self.position.x),
+        )
+        self.position.y = max(
+            self.radius,
+            min(SCREEN_HEIGHT - self.radius, self.position.y),
+        )
 
     def update(self, dt):
         keys = pygame.key.get_pressed()

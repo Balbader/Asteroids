@@ -27,3 +27,8 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+
+4. Play:
++ `w`, `a`, `s`, `d` to move
++ `space` to shoot
+

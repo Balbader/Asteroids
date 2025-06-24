@@ -1,4 +1,4 @@
-# Build an Asteroids Game
+# Asteroids
 Build a simple video game, based on the classic Asteroids.
 
 ## Prerequisits

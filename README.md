@@ -8,14 +8,22 @@ Build a simple video game, based on the classic Asteroids.
 ## Installation
 1. Clone the repository:
 
-`git clone <repository-url>`
+```bash
+git clone <repository-url>
+```
 
-`cd <repository-name>`
+```bash
+cd <repository-name>
+```
 
 2. Install required packages:
 
-`pip install -r requirements.txt`
+```bash
+pip install -r requirements.txt
+```
 
 3. Run the game:
 
-`python main.py`
+```bash
+python main.py
+```
